@@ -7,51 +7,140 @@ pipeline {
                 echo 'maven tool'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Success",
+                body: "Build done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
+    
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Unit test and Integration Test'
-                ech 'Can Use JUnit or TestNG'
+                echo 'Can Use JUnit or TestNG'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Unit and Integration Tests Success",
+                body: "Unit and Integration Tests done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Unit and Integration Tests Fail",
+                body: "Unit and Integration Tests not done",
+                attachLog = true
+            }
         stage('Code Analysis') {
             steps {
                 echo 'Performing Code Analysis'
-                echoo 'Use SonarQube'
+                echo 'Use SonarQube'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Code Analysis Success",
+                body: "Code Analysis done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
         stage('Security Scan') {
             steps {
                 echo 'Performing Security Scan'
                 echo 'Can Use OWASP Dependency Check'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Success",
+                body: "Build done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to Staging...'
                 echo 'Using SCP to deploy to a staging server'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Success",
+                body: "Build done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running Integration Tests on Staging'
                 echo 'Can Use Selenium'
             }
         }
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Success",
+                body: "Build done",
+                attachLog = true
+            )
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production'
                 echo 'Can Use SCP'
             }
         }
-    }
-    post {
-        always {
-            emailext(
-                to: 'aakashsharma090599@gmail.com',
-                subject: "Pipeline Status: ${currentBuild.currentResult}",
-                body: "Build completed with the following status: ${currentBuild.currentResult}.",
-                attachLog: true
+        post {
+
+            success {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Success",
+                body: "Build done",
+                attachLog = true
             )
-        }
-    }
-}
+            failure {
+                emailext to: 'aakashsharma090599@gmail.com',
+                subject: "Build Fail",
+                body: "Build not done",
+                attachLog = true
+            }
+    
+
