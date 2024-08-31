@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the code'
+                echo 'maven tool'
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Unit test and Integration Test'
+                ech 'Can Use JUnit or TestNG'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Performing Code Analysis'
+                echoo 'Use SonarQube'
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Performing Security Scan'
+                echo 'Can Use OWASP Dependency Check'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to Staging...'
+                echo 'Using SCP to deploy to a staging server'
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running Integration Tests on Staging'
+                echo 'Can Use Selenium'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to Production'
+                echo 'Can Use SCP'
+            }
+        }
+    }
+    post {
+        always {
+            emailext(
+                to: 's224028443@deakin.edu.au',
+                subject: "Pipeline Status: ${currentBuild.currentResult}",
+                body: "Build completed with the following status: ${currentBuild.currentResult}.",
+                attachLog: true
+            )
+        }
+    }
+}
